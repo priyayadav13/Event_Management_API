@@ -4,6 +4,7 @@ const User = db.user;
 
 async function signToken(email) {
   const userinfo = await User.findOne({ where: { email } })
+  console.log(userinfo)
   const token = jwt.sign(
     {
       id: userinfo.id,

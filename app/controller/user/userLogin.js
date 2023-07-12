@@ -25,9 +25,16 @@ module.exports = async (req, res, next) => {
     }
 
     const registeredUser = await user && (await comparePasswords(password, user.password))
-    console.log(await user.password)
-    console.log(await encryptPassword(password))
-    console.log(registeredUser)
+    if (!registeredUser) {
+      throw res.status(StatusCodes.BAD_REQUEST)
+        .json({ StatusCode: StatusCodes.BAD_REQUEST, Message: `User with ${email} Does't match Password.` })
+    }
+    else {
+      const token = await signToken(email)
+      return res.status(StatusCodes.ACCEPTED)
+        .json({ "Registered User": user, "Token": token });
+    }
+
 
     if (!registeredUser) {
       throw res.status(StatusCodes.BAD_REQUEST)

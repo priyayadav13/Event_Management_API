@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 const errorHandler = require("../middleware/errorHandler")
 var router = require("express").Router();
 
-router.post("/create", auth, eventValidator, eventCreate);
+router.post("/create", auth, eventCreate);
 router.put("/update/:id", auth, eventUpdate);
 router.delete("/delete/:id", auth, eventDelete.delete);
 

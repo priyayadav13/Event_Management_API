@@ -23,7 +23,7 @@ exports.requestToResetPassword = async (req, res, next) => {
         .json({ StatusCode: StatusCodes.BAD_REQUEST, Message: "User Does't Exist" })
     }
     if (user) {
-      const token = signToken(email)
+      const token = await signToken(email)
       return res.status(StatusCodes.CONTINUE)
         .json({ StatusCode: StatusCodes.CONTINUE, Message: "Request send successfully", "Token": token })
     }

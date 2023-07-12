@@ -14,7 +14,7 @@ var router = require("express").Router();
 
 const auth = require('../middleware/auth');
 
-router.post("/register", registerValidator,  userRegister);
+router.post("/register",  userRegister);
 router.post("/login", loginValidator, userLogin);
 router.put("/password/change", auth, changePasswordValidator, changePassword);
 router.put("/password/update", auth, updatePasswordValidator, updatePassword)
